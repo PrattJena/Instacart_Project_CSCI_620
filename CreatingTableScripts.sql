@@ -1,6 +1,10 @@
 create database instacart;
 
-create table "instacart".aisles
+\c instacart
+
+create schema if not exists instacart authorization postgres;
+
+create table instacart.aisles
 (
     aisle_id integer not null
         constraint aisles_df_pk
@@ -8,7 +12,7 @@ create table "instacart".aisles
     aisle    varchar
 );
 
-alter table "instacart".aisles
+alter table instacart.aisles
     owner to postgres;
 
 create table "instacart".departments
@@ -25,7 +29,7 @@ alter table "instacart".departments
 create table "instacart".users
 (
     user_id integer not null
-        constraint departments_df_pk
+        constraint users_df_pk
             primary key,
     user_name              text,
     user_address           text,

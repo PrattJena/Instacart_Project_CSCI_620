@@ -1,1 +1,10 @@
-data\*
+data/*
+data/aisles.csv
+data/departments.csv
+aisles_df.csv
+departments_df.csv
+order_products_prior_df.csv
+orders_df.csv
+products_df.csv
+random_us_addresses_df.csv
+data/products.csv
