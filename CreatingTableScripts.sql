@@ -20,21 +20,20 @@ create table "bigDataProject".departments
 alter table "bigDataProject".departments
     owner to postgres;
 
-create table "bigDataProject".order_products
+create table "bigDataProject".users
 (
-    order_id          integer not null
-        constraint order_products_orders_order_id_fk
-            references "bigDataProject".orders,
-    product_id        integer not null
-        constraint order_products_products_product_id_fk
-            references "bigDataProject".products,
-    add_to_cart_order integer,
-    reordered         integer,
-    constraint order_products_pk
-        primary key (order_id, product_id)
+    user_id integer not null
+        constraint departments_df_pk
+            primary key,
+    user_name              text,
+    user_address           text,
+    city                   text,
+    state                  char(2),
+    pincode                integer,
+    user_email             text
 );
 
-alter table "bigDataProject".order_products
+alter table "bigDataProject".users
     owner to postgres;
 
 create table "bigDataProject".orders
@@ -68,6 +67,23 @@ create table "bigDataProject".products
 );
 
 alter table "bigDataProject".products
+    owner to postgres;
+
+create table "bigDataProject".order_products
+(
+    order_id          integer not null
+        constraint order_products_orders_order_id_fk
+            references "bigDataProject".orders,
+    product_id        integer not null
+        constraint order_products_products_product_id_fk
+            references "bigDataProject".products,
+    add_to_cart_order integer,
+    reordered         integer,
+    constraint order_products_pk
+        primary key (order_id, product_id)
+);
+
+alter table "bigDataProject".order_products
     owner to postgres;
 
 
