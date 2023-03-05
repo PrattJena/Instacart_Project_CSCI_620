@@ -1,4 +1,4 @@
-create database instacart
+create database instacart;
 
 create table "instacart".aisles
 (
