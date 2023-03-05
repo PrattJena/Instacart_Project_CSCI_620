@@ -1,4 +1,6 @@
-create table "bigDataProject".aisles
+create database instacart
+
+create table "instacart".aisles
 (
     aisle_id integer not null
         constraint aisles_df_pk
@@ -6,10 +8,10 @@ create table "bigDataProject".aisles
     aisle    varchar
 );
 
-alter table "bigDataProject".aisles
+alter table "instacart".aisles
     owner to postgres;
 
-create table "bigDataProject".departments
+create table "instacart".departments
 (
     department_id integer not null
         constraint departments_df_pk
@@ -17,10 +19,10 @@ create table "bigDataProject".departments
     department    text
 );
 
-alter table "bigDataProject".departments
+alter table "instacart".departments
     owner to postgres;
 
-create table "bigDataProject".users
+create table "instacart".users
 (
     user_id integer not null
         constraint departments_df_pk
@@ -33,26 +35,27 @@ create table "bigDataProject".users
     user_email             text
 );
 
-alter table "bigDataProject".users
+alter table "instacart".users
     owner to postgres;
 
-create table "bigDataProject".orders
+create table "instacart".orders
 (
     order_id               integer not null
         constraint orders_dff_pk
             primary key,
-    user_id                integer,
-    eval_set               text,
+    user_id                integer
+        constraint orders_users_user_id_fk
+                references "instacart".users,
     order_number           integer,
     order_dow              integer,
     order_hour_of_day      integer,
     days_since_prior_order integer
 );
 
-alter table "bigDataProject".orders
+alter table "instacart".orders
     owner to postgres;
 
-create table "bigDataProject".products
+create table "instacart".products
 (
     product_id    integer not null
         constraint products_pk
@@ -60,30 +63,30 @@ create table "bigDataProject".products
     product_name  text,
     aisle_id      integer
         constraint products_aisles_aisle_id_fk
-            references "bigDataProject".aisles,
+            references "instacart".aisles,
     department_id integer
         constraint products_departments_department_id_fk
-            references "bigDataProject".departments
+            references "instacart".departments
 );
 
-alter table "bigDataProject".products
+alter table "instacart".products
     owner to postgres;
 
-create table "bigDataProject".order_products
+create table "instacart".order_products
 (
     order_id          integer not null
         constraint order_products_orders_order_id_fk
-            references "bigDataProject".orders,
+            references "instacart".orders,
     product_id        integer not null
         constraint order_products_products_product_id_fk
-            references "bigDataProject".products,
+            references "instacart".products,
     add_to_cart_order integer,
     reordered         integer,
     constraint order_products_pk
         primary key (order_id, product_id)
 );
 
-alter table "bigDataProject".order_products
+alter table "instacart".order_products
     owner to postgres;
 
 
