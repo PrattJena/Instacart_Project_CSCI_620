@@ -8,7 +8,7 @@ LIMIT 15;
 select cd.user_name,count(*) as frequency
 from "bigDataProject".client_data as cd,"bigDataProject".order_products as op,"bigDataProject".products as pd,"bigDataProject".orders as ord
 where op.product_id=pd.product_id and
-    ord.order_id=op.product_id and
+    ord.order_id=op.order_id and
     ord.user_id=cd.user_id
 group by cd.user_name
 ORDER BY frequency DESC
