@@ -1,0 +1,58 @@
+db.createCollection("Products",
+{validator:{
+	"$and": [
+      	{"$jsonSchema": {
+				required: [ "_id", "name" ],
+      			properties: {
+                name: {bsonType: "string"},
+				aisle: {bsonType: "string"},
+				department: {bsonType: "string"}
+          		}
+			}
+      	}
+	]
+	}
+});
+
+db.createCollection("Users",
+{validator:{
+	"$and": [
+      	{"$jsonSchema": {
+				required: [ "_id", "user_name" ],
+      			properties: {
+				user_name: {bsonType: "string"},
+                address: {bsonType: "string"},
+                city: {bsonType: "string"},
+                state: {bsonType: "string"},
+				pincode: {bsonType: "int",
+						minimum: 0
+						},
+				user_email: {bsonType: "string"}
+          		}
+			}
+      	}
+	]
+	}
+});
+
+db.createCollection("Orders",
+{validator:{
+	"$and": [
+      	{"$jsonSchema": {
+				required: [ "_id", "user_id", "products" ],
+      			properties: {
+				user_id: {bsonType: "int",
+						minimum: 0
+						},
+				order_number: {bsonType: "int",
+						minimum: 0
+						}
+                datetime: {bsonType: "object"},
+                days_since_prior_order: {bsonType: "int"},
+                products: {bsonType: "array"}
+          		}
+			}
+      	}
+	]
+	}
+});
