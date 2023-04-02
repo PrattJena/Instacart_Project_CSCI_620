@@ -46,7 +46,7 @@ db.createCollection("Orders",
 						},
 				order_number: {bsonType: "int",
 						minimum: 0
-						}
+						},
                 datetime: {bsonType: "object"},
                 days_since_prior_order: {bsonType: "int"},
                 products: {bsonType: "array"}
