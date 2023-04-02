@@ -16,14 +16,14 @@ LIMIT 5;
 
 SELECT pd.aisle_id
 FROM "bigDataProject".aisles AS ai, "bigDataProject".products AS pd
-where ai.aisle_id=pd.product_id
+where ai.aisle_id=pd.aisle_id
 GROUP BY pd.aisle_id
 HAVING COUNT(*) = (
   SELECT MAX(frequency)
   FROM (
      select pd.aisle_id,count(*) as frequency
     from "bigDataProject".aisles as ai,"bigDataProject".products as pd
-    where ai.aisle_id=pd.product_id
+    where ai.aisle_id=pd.aisle_id
     group by pd.aisle_id
   ) AS freq_table
 );
